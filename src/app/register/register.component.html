@@ -1,0 +1,183 @@
+<section class="register-form w-75 py-3">
+  <h1 class="display-3 fw-bold mb-4">Register</h1>
+  <form [formGroup]="regsterForm" (ngSubmit)="submitRegister(regsterForm)">
+    <p class="alert alert-danger" *ngIf="msgRegsiter">{{ msgRegsiter }}</p>
+    <div class="row gy-3 gx-1">
+      <div class="col-12">
+        <div class="input-data position-relative text-dark">
+          <input
+            id="first_name"
+            type="text"
+            class="form-control"
+            autocomplete="off"
+            placeholder=" "
+            formControlName="first_name"
+          />
+          <label
+            for="first_name"
+            class="position-absolute top-50 start-0 translate-middle-y ms-3"
+            >First Name</label
+          >
+        </div>
+        <div
+          class="msg text-danger small"
+          *ngIf="
+            regsterForm.get('first_name')?.errors &&
+            regsterForm.get('first_name')?.touched
+          "
+        >
+          <p *ngIf="regsterForm.get('first_name')?.getError('required')">
+            Name Required
+          </p>
+          <p *ngIf="regsterForm.get('first_name')?.getError('minlength')">
+            MinLength 2 Char
+          </p>
+          <p *ngIf="regsterForm.get('first_name')?.getError('maxlength')">
+            MaxLength 25 Char
+          </p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="input-data position-relative text-dark">
+          <input
+            id="last_name"
+            type="text"
+            class="form-control"
+            autocomplete="off"
+            placeholder=" "
+            formControlName="last_name"
+          />
+          <label
+            for="last_name"
+            class="position-absolute top-50 start-0 translate-middle-y ms-3"
+            >Last Name</label
+          >
+        </div>
+        <div
+          class="msg text-danger small"
+          *ngIf="
+            regsterForm.get('last_name')?.errors &&
+            regsterForm.get('last_name')?.touched
+          "
+        >
+          <p *ngIf="regsterForm.get('last_name')?.getError('required')">
+            Name Required
+          </p>
+          <p *ngIf="regsterForm.get('last_name')?.getError('minlength')">
+            MinLength 2 Char
+          </p>
+          <p *ngIf="regsterForm.get('last_name')?.getError('maxlength')">
+            MaxLength 25 Char
+          </p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="input-data position-relative text-dark">
+          <input
+            id="age"
+            type="number"
+            class="form-control"
+            autocomplete="off"
+            placeholder=" "
+            formControlName="age"
+          />
+          <label
+            for="age"
+            class="position-absolute top-50 start-0 translate-middle-y ms-3"
+            >Age</label
+          >
+        </div>
+        <div
+          class="msg text-danger small"
+          *ngIf="
+            regsterForm.get('age')?.errors && regsterForm.get('age')?.touched
+          "
+        >
+          <p *ngIf="regsterForm.get('age')?.getError('required')">
+            Age Required
+          </p>
+          <p *ngIf="regsterForm.get('age')?.getError('min')">Min 10 Years</p>
+          <p *ngIf="regsterForm.get('age')?.getError('max')">Max 80 Years</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="input-data position-relative text-dark">
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            autocomplete="off"
+            placeholder=" "
+            formControlName="email"
+          />
+          <label
+            for="email"
+            class="position-absolute top-50 start-0 translate-middle-y ms-3"
+            >E-mail</label
+          >
+        </div>
+        <div
+          class="msg text-danger small"
+          *ngIf="
+            regsterForm.get('email')?.errors &&
+            regsterForm.get('email')?.touched
+          "
+        >
+          <p *ngIf="regsterForm.get('email')?.getError('required')">
+            email Required
+          </p>
+          <p *ngIf="regsterForm.get('email')?.getError('email')">
+            E-mail Format Invalid
+          </p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="input-data position-relative text-dark">
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            autocomplete="off"
+            placeholder=" "
+            formControlName="password"
+          />
+          <label
+            for="password"
+            class="position-absolute top-50 start-0 translate-middle-y ms-3"
+            >Password</label
+          >
+        </div>
+        <div
+          class="msg text-danger small"
+          *ngIf="
+            regsterForm.get('password')?.errors &&
+            regsterForm.get('password')?.touched
+          "
+        >
+          <p *ngIf="regsterForm.get('password')?.getError('required')">
+            password Required
+          </p>
+          <p *ngIf="regsterForm.get('password')?.getError('minlength')">
+            MinLength 2
+          </p>
+          <p *ngIf="regsterForm.get('password')?.getError('maxlength')">
+            MaxLength 12
+          </p>
+          <p *ngIf="regsterForm.get('password')?.getError('pattern')">
+            Pattern Start (A-Z and any Number Or Char [1-16])
+          </p>
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      [class]="!loading?'btn btn-outline-secondary fw-semibold mt-3':'btn btn-outline-danger fw-semibold mt-3'"
+      [disabled]="regsterForm.invalid"
+    >
+      <span *ngIf="!loading"> Registration</span>
+      <span *ngIf="loading"
+        >Waiting  <i class="fas fa-spinner fa-spin"></i
+      ></span>
+    </button>
+  </form>
+</section>

@@ -1,0 +1,28 @@
+<div class="row align-items-center">
+  <div class="col-md-4">
+    <img
+      [src]="imgSrc"
+      class="w-100"
+      alt="person photo"
+    />
+  </div>
+  <div class="col-md-8">
+    <div class="user-info">
+      <h1 class="font-mon h3">
+        First Name :
+        <span class="text-muted font-taj h1"> {{ userData.first_name }}</span>
+        <br />
+        Last Name :
+        <span class="text-muted font-taj h1"> {{ userData.last_name }}</span>
+      </h1>
+      <h3 class="font-mon h3">
+        Age :
+        <span class="text-muted font-taj h1"> {{ userData.age }}</span>
+      </h3>
+      <h3 class="font-mon h3">
+        email :
+        <span class="text-muted font-taj h1"> {{ userData.email }}</span>
+      </h3>
+    </div>
+  </div>
+</div>
