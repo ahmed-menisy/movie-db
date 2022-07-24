@@ -2,6 +2,7 @@
   <div class="col-md-4">
     <img
       [src]="prefixImg + (moviesData.poster_path ?? moviesData.profile_path)"
+       onerror="this.src='./assets/images/img-not.jpg'"
       class="w-100"
       alt="moves photo"
     />
