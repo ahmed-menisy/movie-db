@@ -10,7 +10,13 @@ $borderHeight: 1px;
 $secondFontColor: #949cb0;
 $fontMon: "Montserrat Alternates", sans-serif;
 $fontTaj: "Tajawal", sans-serif;
-$transition: all .4s linear;
+$transition: all 0.4s linear;
+
+// to convert to rem
+@function convert($param) {
+  @return $param / 16;
+}
+
 body {
   font-family: $fontTaj;
   background-color: $bgColor;
@@ -23,7 +29,7 @@ body {
 }
 ::-webkit-scrollbar-track {
   background-color: $secondFontColor;
-  box-shadow: 0 0 10px inset rgb(0 0 0 / .4);
+  box-shadow: 0 0 10px inset rgb(0 0 0 / 0.4);
 }
 ::-webkit-scrollbar-thumb {
   background-color: $bgColor;
@@ -62,7 +68,7 @@ input[type="number"] {
 }
 .card {
   cursor: pointer;
-  filter: grayscale(.4);
+  filter: grayscale(0.4);
   transition: $transition;
 }
 .card img {
@@ -75,19 +81,22 @@ input[type="number"] {
 .page-link {
   cursor: pointer;
   color: #fff;
+  font: {
+    size: convert(14) rem;
+  }
 }
 .page-link.active {
   background-color: $lightBgColor !important;
 }
-.font-taj{
+.font-taj {
   font-family: $fontTaj;
 }
-.font-mon{
+.font-mon {
   font-family: $fontMon;
 }
 .icon-loading {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%,-50%) !important;
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50% , -50%);
 }
