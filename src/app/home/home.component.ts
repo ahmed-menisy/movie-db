@@ -1,7 +1,8 @@
 import { Movieface } from './../interface/movieface';
 import { MoviesService } from './../services/movies.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-home',
@@ -18,11 +19,39 @@ export class HomeComponent implements OnInit, OnDestroy {
   personSubscrip: Subscription = new Subscription();
   prefixImg: string = 'https://image.tmdb.org/t/p/original';
   isLoding: boolean = true;
+  // To Sprid All data to array
+  allData: Partial<Movieface>[] = [];
+  // Owl Carsole
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    autoplay:true,
+    autoplayTimeout:1500,
+    autoplayHoverPause:true,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 3,
+      },
+      400: {
+        items: 4,
+      },
+      740: {
+        items: 6,
+      },
+      940: {
+        items: 10,
+      },
+    },
+    nav: true,
+  };
   ngOnInit(): void {
     setTimeout(() => {
       this.getTrendingMovies();
-      this.getTrendingTv();
-      this.getTrendingPerson();
     }, 500);
   }
   // get trending movies
@@ -33,24 +62,31 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
       complete: () => {
         this.isLoding = false;
+        this.getTrendingTv();
       },
     });
   }
   // get trending tv
   getTrendingTv() {
-    this.tvSubscrip = this._MoviesService.getTrending('tv').subscribe({
+    return (this.tvSubscrip = this._MoviesService.getTrending('tv').subscribe({
       next: (response) => {
         this.trendingTv = response.results.slice(0, 10);
       },
-    });
+      complete: () => {
+        this.allData = [...this.trendingMovies, ...this.trendingTv];
+        this.getTrendingPerson();
+      },
+    }));
   }
   // get trending person
   getTrendingPerson() {
-    this.personSubscrip = this._MoviesService.getTrending('person').subscribe({
-      next: (response) => {
-        this.trendingPerson = response.results.slice(0, 10);
-      },
-    });
+    return (this.personSubscrip = this._MoviesService
+      .getTrending('person')
+      .subscribe({
+        next: (response) => {
+          this.trendingPerson = response.results.slice(0, 10);
+        },
+      }));
   }
   // when go out component
   ngOnDestroy(): void {

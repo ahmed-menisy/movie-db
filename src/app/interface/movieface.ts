@@ -11,7 +11,7 @@ export interface Movieface {
   popularity:number;
   vote_average: number;
   vote_count: number;
-  id: number;
+  id: any;
   tagline: string;
   biography:string;
   birthday:string;

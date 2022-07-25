@@ -21,7 +21,8 @@ import { WatchPipe } from './watch.pipe';
 import { SeemorePipe } from './seemore.pipe';
 import { SearchComponent } from './search/search.component';
 import { SearchPipe } from './search.pipe'
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,9 @@ import { SearchPipe } from './search.pipe'
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
