@@ -11,16 +11,17 @@ export class AuthService {
   constructor(private _HttpClient: HttpClient, private _Router: Router) {
     this.saveUserData();
   }
+  baseUrl:string =`https://routeegypt.herokuapp.com/`
   userData: BehaviorSubject<any> = new BehaviorSubject(null);
   registrationApi(data: object): Observable<any> {
     return this._HttpClient.post(
-      'https://route-egypt-api.herokuapp.com/signup',
+      `${this.baseUrl}signup`,
       data
     );
   }
   loginApi(data: object): Observable<any> {
     return this._HttpClient.post(
-      'https://route-egypt-api.herokuapp.com/signin',
+      `${this.baseUrl}signin`,
       data
     );
   }
